@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* 
+  랜딩페이지 전체 구조
+
+  Header                상단 고정 네비게이션
+  Hero                  메인 배너
+  ImageSection          분양 포인트 소개 섹션
+  ContactSection        상담 문의 폼
+  Footer                하단 정보
+  FloatingCallButton    우측 하단 전화 버튼
+*/
+
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import ImageSection from "./components/ImageSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
+import FloatingCallButton from "./components/FloatingCallButton";
+
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <Hero />
+      <ImageSection />
+      <ContactSection />
+      <Footer />
+
+      {/* 항상 화면 우측 하단에 떠있는 전화 상담 버튼 */}
+      <FloatingCallButton />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
