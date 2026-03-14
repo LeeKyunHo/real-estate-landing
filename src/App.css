@@ -366,11 +366,36 @@ img {
   font-size: 16px;
   border: 1px solid #cfcfcf;
   background: #fff;
+  color: #111;
 }
 
 .reservation-form input,
 .reservation-form select {
   height: 56px;
+}
+
+/* 날짜 입력 전용 */
+.reservation-form input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+  color: #111;
+  -webkit-text-fill-color: #111;
+  background: #fff;
+  min-width: 0;
+}
+
+/* 모바일 사파리/크롬 계열 날짜 텍스트 표시 보정 */
+.reservation-form input[type="date"]::-webkit-datetime-edit {
+  color: #111;
+}
+
+.reservation-form input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  color: #111;
+}
+
+.reservation-form input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .reservation-form textarea {
@@ -555,4 +580,12 @@ img {
     font-size: 16px;
     padding: 14px;
   }
+  .reservation-form input[type="date"] {
+  color: #111;
+  -webkit-text-fill-color: #111;
+}
+
+.reservation-form input[type="date"]::-webkit-datetime-edit {
+  color: #111;
+}
 }

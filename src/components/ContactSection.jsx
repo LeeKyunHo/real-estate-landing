@@ -116,20 +116,27 @@ export default function ContactSection() {
               onChange={handleChange}
             />
 
-            {/* 방문 예약일 */}
-            <div
-              className="reservation-form__field-wrap"
-              onClick={handleDateWrapClick}
-            >
-              <input
-                ref={dateInputRef}
-                type="date"
-                name="visitDate"
-                required
-                value={formData.visitDate}
-                onChange={handleChange}
-              />
-            </div>
+           {/* 방문 예약일 */}
+<div
+  className="reservation-form__field-wrap"
+  onClick={handleDateWrapClick}
+>
+  {!formData.visitDate && (
+    <span className="reservation-form__date-placeholder">
+      방문 예약날짜 선택
+    </span>
+  )}
+
+  <input
+    ref={dateInputRef}
+    type="date"
+    name="visitDate"
+    required
+    value={formData.visitDate}
+    onChange={handleChange}
+    className="reservation-form__date-input"
+  />
+</div>
 
             {/* 방문 예약시간: 드롭다운으로 변경 */}
             <select
