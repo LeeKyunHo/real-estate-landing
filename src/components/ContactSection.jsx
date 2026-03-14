@@ -54,13 +54,41 @@ export default function ContactSection() {
   };
 
   /* 폼 제출 처리 */
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log("예약 데이터:", formData);
+  console.log("예약 폼 제출 시작");
+  console.log("전송 데이터:", formData);
+
+  try {
+    const res = await fetch("/api/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    console.log("API 응답 상태:", res.status);
+
+    const data = await res.json();
+
+    console.log("API 응답 데이터:", data);
+
+    if (!res.ok) {
+      throw new Error(data.message || "예약 전송 실패");
+    }
+
+    console.log("예약 전송 성공");
 
     setIsCompleteOpen(true);
-  };
+
+  } catch (error) {
+    console.error("예약 전송 오류:", error);
+
+    alert("예약 전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+  }
+};
 
   /* 완료 모달 닫기 */
   const handleCloseModal = () => {
