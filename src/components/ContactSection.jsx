@@ -2,7 +2,8 @@ import { useState } from "react";
 
 /*
   방문예약 섹션
-  폼 입력 데이터를 상태로 관리
+  현재 단계에서는 입력값 확인과 완료 모달 표시까지 구현
+  실제 문자 발송 / API 연동은 다음 단계에서 진행
 */
 
 export default function ContactSection() {
@@ -12,101 +13,169 @@ export default function ContactSection() {
     visitDate: "",
     visitTime: "",
     message: "",
+    agree: false,
   });
+
+  /* 예약 완료 모달 열림 상태 */
+  const [isCompleteOpen, setIsCompleteOpen] = useState(false);
 
   /* 입력값 변경 처리 */
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  /* 폼 제출 */
+  /* 폼 제출 처리 */
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    /* 현재 단계에서는 콘솔 확인 + 완료 모달 표시 */
     console.log("예약 데이터:", formData);
 
-    alert(
-      `예약 접수\n\n이름: ${formData.name}\n연락처: ${formData.phone}\n방문일: ${formData.visitDate}\n시간: ${formData.visitTime}`
-    );
+    setIsCompleteOpen(true);
+  };
+
+  /* 완료 모달 닫기 */
+  const handleCloseModal = () => {
+    setIsCompleteOpen(false);
   };
 
   return (
-    <section id="reservation" className="reservation-section">
-      <div className="reservation-section__inner">
-        <p className="reservation-section__small-text">방문예약 / 상담신청</p>
+    <>
+      <section id="reservation" className="reservation-section">
+        <div className="reservation-section__inner">
+          <p className="reservation-section__small-text">방문예약 / 상담신청</p>
 
-        <h2 className="reservation-section__title">모델하우스 방문예약</h2>
+          <h2 className="reservation-section__title">모델하우스 방문예약</h2>
 
-        <p className="reservation-section__subtitle">
-          방문을 원하시는 고객님께서는 아래 정보를 남겨주세요.
-          <br />
-          예약 접수 후 담당자가 순차적으로 연락드립니다.
-        </p>
+          <p className="reservation-section__subtitle">
+            방문을 원하시는 고객님께서는 아래 정보를 남겨주세요.
+            <br />
+            예약 접수 후 담당자가 순차적으로 연락드립니다.
+          </p>
 
-        <p className="reservation-section__contact-time">
-          연락 가능 시간 : 연중무휴 10:00 ~ 18:00
-        </p>
+          {/* 연락 가능 시간 안내 */}
+          <p className="reservation-section__contact-time">
+            상담 가능 시간 : 매일 10:00 ~ 18:00
+          </p>
 
-        <form className="reservation-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="이름"
-            required
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <form className="reservation-form" onSubmit={handleSubmit}>
+            {/* 이름 입력 */}
+            <input
+              type="text"
+              name="name"
+              placeholder="이름"
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
 
-          <input
-            type="tel"
-            name="phone"
-            placeholder="연락처 (예: 010-1234-5678)"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-          />
+            {/* 연락처 입력 */}
+            <input
+              type="tel"
+              name="phone"
+              placeholder="연락처 (예: 010-1234-5678)"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+            />
 
-          <input
-            type="date"
-            name="visitDate"
-            required
-            value={formData.visitDate}
-            onChange={handleChange}
-          />
+            {/* 방문 예약일 입력 */}
+            <input
+              type="date"
+              name="visitDate"
+              required
+              value={formData.visitDate}
+              onChange={handleChange}
+            />
 
-          <input
-            type="time"
-            name="visitTime"
-            required
-            value={formData.visitTime}
-            onChange={handleChange}
-          />
+            {/* 방문 예약시간 입력 */}
+            <input
+              type="time"
+              name="visitTime"
+              required
+              value={formData.visitTime}
+              onChange={handleChange}
+            />
 
-          <textarea
-            name="message"
-            placeholder="문의사항 (선택)"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
-          />
+            {/* 선택 입력 */}
+            <textarea
+              name="message"
+              placeholder="문의사항 (선택)"
+              rows="5"
+              value={formData.message}
+              onChange={handleChange}
+            />
 
-          <label className="reservation-form__agree">
-            <input type="checkbox" required />
-            <span>개인정보 수집 및 이용에 동의합니다.</span>
-          </label>
+            <label className="reservation-form__agree">
+              <input
+                type="checkbox"
+                name="agree"
+                required
+                checked={formData.agree}
+                onChange={handleChange}
+              />
+              <span>개인정보 수집 및 이용에 동의합니다.</span>
+            </label>
 
-          <button type="submit">방문예약 신청하기</button>
-        </form>
+            <button type="submit">방문예약 신청하기</button>
+          </form>
 
-        <p className="reservation-section__notice">
-          모델하우스 방문 시 담당자명을 확인해 주세요.
-        </p>
-      </div>
-    </section>
+          {/* 운영 안내 문구 */}
+          <p className="reservation-section__notice">
+            모델하우스 방문 시 담당자 박정은 을(를) 반드시 확인해 주세요.
+          </p>
+        </div>
+      </section>
+
+      {/* 예약 완료 모달 */}
+      {isCompleteOpen && (
+        <div className="reservation-modal" onClick={handleCloseModal}>
+          <div
+            className="reservation-modal__content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="reservation-modal__small-text">예약 접수</p>
+
+            <h3 className="reservation-modal__title">
+              방문예약이 접수되었습니다.
+            </h3>
+
+            <div className="reservation-modal__info">
+              <p>
+                <strong>이름</strong> : {formData.name}
+              </p>
+              <p>
+                <strong>연락처</strong> : {formData.phone}
+              </p>
+              <p>
+                <strong>방문일</strong> : {formData.visitDate}
+              </p>
+              <p>
+                <strong>시간</strong> : {formData.visitTime}
+              </p>
+            </div>
+
+            <p className="reservation-modal__description">
+              접수 내용을 확인한 뒤 순차적으로 연락드립니다.
+              <br />
+              모델하우스 방문 시 담당자 박정은 을(를) 반드시 확인해 주세요.
+            </p>
+
+            <button
+              type="button"
+              className="reservation-modal__button"
+              onClick={handleCloseModal}
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
