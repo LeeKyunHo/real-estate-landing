@@ -63,24 +63,24 @@ img {
 }
 
 .header__logo {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
   color: #fff;
 }
 
 .header__nav {
   display: flex;
-  gap: 22px;
+  gap: 28px;
 }
 
 .header__nav-button {
   color: #fff;
-  font-size: 14px;
+  font-size: 21px;
   font-weight: 600;
 }
 
 .header__phone {
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 700;
   color: #fff;
 }
@@ -273,8 +273,17 @@ img {
   text-align: center;
   font-size: 17px;
   color: #444;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   line-height: 1.6;
+}
+
+/* 연락 가능 시간 안내 */
+.reservation-section__contact-time {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 28px;
 }
 
 .reservation-form {
@@ -292,6 +301,15 @@ img {
   background: #fff;
 }
 
+.reservation-form input {
+  height: 56px;
+}
+
+.reservation-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
 .reservation-form__agree {
   display: flex;
   align-items: center;
@@ -300,12 +318,26 @@ img {
   color: #444;
 }
 
+.reservation-form__agree input {
+  width: auto;
+  height: auto;
+}
+
 .reservation-form button {
   padding: 18px;
   background: #111;
   color: #fff;
   font-size: 18px;
   font-weight: 700;
+}
+
+/* 하단 운영 안내 문구 */
+.reservation-section__notice {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
 }
 
 /* =========================
@@ -348,21 +380,21 @@ img {
   }
 
   .header__logo {
-    font-size: 20px;
+    font-size: 30px;
   }
 
   .header__nav {
-    gap: 14px;
+    gap: 18px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .header__nav-button {
-    font-size: 13px;
+    font-size: 18px;
   }
 
   .header__phone {
-    font-size: 13px;
+    font-size: 18px;
   }
 
   .hero__overlay {
@@ -413,13 +445,20 @@ img {
   }
 
   .reservation-section__subtitle {
-    font-size: 15px;
-  }
+  font-size: 15px;
+}
 
-  .call-button {
-    right: 14px;
-    bottom: 14px;
-    padding: 13px 16px;
-    font-size: 14px;
-  }
+.reservation-section__contact-time {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.reservation-form input,
+.reservation-form textarea {
+  font-size: 16px;
+}
+
+.reservation-section__notice {
+  font-size: 13px;
+}
 }
