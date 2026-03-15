@@ -14,8 +14,8 @@ https://gj-modelhouse.kro.kr/
 
 ## Screenshot
 <p align="center">
-  <img width="45%" src="https://github.com/user-attachments/assets/ada379ff-8ee5-4443-a45a-1347960ce992">
   <img width="45%" src="https://github.com/user-attachments/assets/7f11b45a-be1f-42f5-be03-a9ce9c03a363">
+  <img width="45%" src="https://github.com/user-attachments/assets/ada379ff-8ee5-4443-a45a-1347960ce992">
 </p>
 
 ---
