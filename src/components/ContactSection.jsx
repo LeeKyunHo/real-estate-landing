@@ -6,7 +6,15 @@ import { useRef, useState } from "react";
   실제 문자 발송 / API 연동은 다음 단계에서 진행
 */
 
-export default function ContactSection() {
+export default function ContactSection() { 
+  
+    function validatePhone(phone) {
+    const regex = /^010-\d{4}-\d{4}$/;
+    return regex.test(phone);
+  }
+  
+  /* 폼 데이터 상태 */
+  
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
